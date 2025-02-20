@@ -20,4 +20,5 @@ app.get("/", (req, res) => {
 const ideasRouter = require("./routes/ideas");
 app.use("/api/ideas", ideasRouter);
 
+// with this command we create a server listening in a specific port
 app.listen(port, () => console.log(`Server listening on port ${port}`));
