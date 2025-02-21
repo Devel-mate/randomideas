@@ -1,3 +1,4 @@
+const path = require("path"); // We import the 'path' module because we want to use it to join this file with other through the path
 const express = require("express");
 require("dotenv").config(); // We don't need to put it in a variable, just add the .config() method
 const port = process.env.PORT || 5000;
@@ -6,6 +7,11 @@ const connectDB = require("./config/db");
 connectDB();
 
 const app = express();
+
+// Static Folder
+// This middleware will make static the public directory called 'public'
+// That means that the directory will be able to server html and css static files
+app.use(express.static(path.join(__dirname, "public")));
 
 // Body parser middleware
 // the .use() method is used to create a middleware between requests and responses
