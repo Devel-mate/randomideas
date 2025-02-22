@@ -1,5 +1,6 @@
 const path = require("path"); // We import the 'path' module because we want to use it to join this file with other through the path
 const express = require("express");
+const cors = require("cors");
 require("dotenv").config(); // We don't need to put it in a variable, just add the .config() method
 const port = process.env.PORT || 5000;
 const connectDB = require("./config/db");
@@ -17,6 +18,14 @@ app.use(express.static(path.join(__dirname, "public")));
 // the .use() method is used to create a middleware between requests and responses
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// CORS middleware
+app.use(
+  cors({
+    origin: ["http://localhost:5000", "http://localhost:3000"],
+    credentials: true,
+  })
+);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the RandomIdeas API" });
